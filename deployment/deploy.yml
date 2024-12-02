@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-back
+  labels:
+    app: test-back
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: test-back
+  template:
+    metadata:
+      labels:
+        app: test-back
+    spec:
+      containers:
+      - name: test-back
+        image: test-back:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: multi
+          value: "test"
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "256Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: test-back
+spec:
+  selector:
+    app: test-back
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      nodePort: 30080
+  type: NodePort
