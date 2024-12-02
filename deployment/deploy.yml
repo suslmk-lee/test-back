@@ -1,3 +1,15 @@
+apiVersion: v1
+data:
+  .dockerconfigjson: eyJhdXRocyI6eyI0NGNlNzg5Yi1rcjEtcmVnaXN0cnkuY29udGFpbmVyLm5obmNsb3VkLmNvbS9jb250YWluZXItcGxhdGZvcm0tcmVnaXN0cnkiOnsidXNlcm5hbWUiOiJYQ0ExT2owRnFBOE9NaGFsT1VoSyIsInBhc3N3b3JkIjoiekdneG83WGxwazVvalk3diIsImF1dGgiOiJXRU5CTVU5cU1FWnhRVGhQVFdoaGJFOVZhRXM2ZWtkbmVHODNXR3h3YXpWdmFsazNkZz09In19fQ==
+kind: Secret
+metadata:
+  annotations:
+    strategy.spinnaker.io/versioned: "false"
+  name: ncr
+  namespace: iot-edge
+type: kubernetes.io/dockerconfigjson
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -14,6 +26,8 @@ spec:
       labels:
         app: test-back
     spec:
+      imagePullSecrets:
+        - name: ncr
       containers:
       - name: test-back
         image: 44ce789b-kr1-registry.container.nhncloud.com/container-platform-registry/test-back:latest
@@ -35,5 +49,5 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8080
-      nodePort: 30080
+      nodePort: 30090
   type: NodePort
