@@ -16,19 +16,13 @@ spec:
     spec:
       containers:
       - name: test-back
-        image: test-back:latest
+        image: 44ce789b-kr1-registry.container.nhncloud.com/container-platform-registry/test-back:latest
         ports:
         - containerPort: 8080
         env:
         - name: multi
           value: "test"
-        resources:
-          requests:
-            cpu: "100m"
-            memory: "128Mi"
-          limits:
-            cpu: "500m"
-            memory: "256Mi"
+
 ---
 apiVersion: v1
 kind: Service
