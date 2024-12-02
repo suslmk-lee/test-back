@@ -1,3 +1,5 @@
 module test-back
 
-go 1.22.9
+go 1.22.8
+
+require github.com/go-ini/ini v1.67.0 // indirect
