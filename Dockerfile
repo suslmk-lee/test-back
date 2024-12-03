@@ -17,7 +17,7 @@ WORKDIR /dist
 
 RUN cp /build/main .
 
-FROM scratch
+FROM alpine:latest
 
 COPY --from=builder /dist/main .
 

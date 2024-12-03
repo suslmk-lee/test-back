@@ -16,15 +16,18 @@ metadata:
   name: test-back
   labels:
     app: test-back
+    cluster: kpaas-k2p
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: test-back
+      cluster: kpaas-k2p
   template:
     metadata:
       labels:
         app: test-back
+        cluster: kpaas-k2p
     spec:
       imagePullSecrets:
         - name: ncr
