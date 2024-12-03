@@ -36,9 +36,6 @@ spec:
         image: 44ce789b-kr1-registry.container.nhncloud.com/container-platform-registry/test-back:latest
         ports:
         - containerPort: 8080
-        env:
-        - name: multi
-          value: "test"
 
 ---
 apiVersion: v1
